@@ -14,3 +14,8 @@ A simple note app
 # packages used
 
 bootstrap -cdn
+fontawesome -cdn
+
+# Update
+
+update -created 1st look, no functionalities created, need to create jsx for add notes panel.

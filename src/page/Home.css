@@ -1,0 +1,6 @@
+.noteHead {
+  background: rgb(140, 140, 228);
+}
+.noteHead:focus {
+  background: rgb(240, 240, 163);
+}
