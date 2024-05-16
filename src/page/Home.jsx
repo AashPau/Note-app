@@ -1,3 +1,4 @@
+import { AddContent } from "../components/addContent/AddContent";
 import { Display } from "../components/display/Display";
 import "./Home.css";
 
@@ -29,7 +30,8 @@ const Home = () => {
         </div>
         <div className="col bg-info d-flex p-4 rounded">
           {/* display notes  */}
-          <Display />
+          {/* <Display /> */}
+          <AddContent />
         </div>
       </div>
     </div>
