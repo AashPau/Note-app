@@ -19,3 +19,7 @@ fontawesome -cdn
 # Update
 
 update -created 1st look, no functionalities created, need to create jsx for add notes panel.
+
+update - create UI for add notes panel
+
+update - make the "+" button and the fist "note heading" functional
