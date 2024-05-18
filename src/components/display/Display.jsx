@@ -6,7 +6,7 @@ export const Display = () => {
       className="card"
       //  style={{ width: "18rem" }}
     >
-      <div className="card-body">
+      <div className="card-body bg-info-subtle">
         <h5 className="card-title text-center">Note Heading</h5>
         <hr />
         <p className="card-text text-center">

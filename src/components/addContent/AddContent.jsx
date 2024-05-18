@@ -6,7 +6,7 @@ export const AddContent = () => {
       <div className="mb-3">
         <input
           type="email"
-          className="form-control"
+          className="form-control bg-info-subtle"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Heading"
@@ -14,7 +14,7 @@ export const AddContent = () => {
       </div>
       <div className="mb-3">
         <textarea
-          className="form-control"
+          className="form-control bg-info-subtle"
           id="exampleFormControlTextarea1"
           rows="8"
           placeholder="Description"
