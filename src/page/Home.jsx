@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AddContent } from "../components/addContent/AddContent";
 import { Display } from "../components/display/Display";
 import "./Home.css";
+import { NoteHeader } from "../components/noteHeader/NoteHeader";
 
 const Home = () => {
   const [panel, setPanel] = useState("display");
@@ -19,7 +20,7 @@ const Home = () => {
   return (
     <div className="container rounded mt-5">
       <div className="row">
-        <div className="col bg-success rounded p-5">
+        <div className="col bg-success rounded p-5 noteList">
           {/* list of notes */}
           <div className="d-flex">
             <h1>Notes</h1>
@@ -31,18 +32,7 @@ const Home = () => {
           </div>
 
           <hr />
-          <div
-            className="noteHead border border-dark rounded p-3 d-flex mb-2"
-            onClick={handleOnNotesClick}
-          >
-            <h4>Note Heading</h4>
-          </div>
-          <div className="noteHead border border-dark rounded p-3 d-flex mb-2">
-            <h4>Note Heading</h4>
-          </div>
-          <div className="noteHead border border-dark rounded p-3 d-flex mb-2">
-            <h4>Note Heading</h4>
-          </div>
+          <NoteHeader handleOnNotesClick={handleOnNotesClick} />
         </div>
         <div className="col bg-info d-flex p-4 rounded justify-content-center">
           {/* display notes or form */}
