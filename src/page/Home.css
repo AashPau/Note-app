@@ -4,6 +4,8 @@
 .noteHead:focus {
   background: rgb(240, 240, 163);
 }
-.noteList {
-  height: 50vh;
+
+.overflow {
+  overflow: auto !important;
+  height: 300px;
 }

@@ -23,3 +23,7 @@ update -created 1st look, no functionalities created, need to create jsx for add
 update - create UI for add notes panel
 
 update - make the "+" button and the fist "note heading" functional
+
+update - make handleOnSubmit for the form button to post the notes to the server and save it on database
+
+update - avoid submission of empty notes

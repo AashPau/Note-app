@@ -1,17 +1,14 @@
 import "./Display.css";
 
-export const Display = () => {
+export const Display = ({ display }) => {
+  const { title, description } = display;
   return (
-    <div
-      className="card"
-      //  style={{ width: "18rem" }}
-    >
+    <div className="card w-100">
       <div className="card-body">
-        <h5 className="card-title text-center">Note Heading</h5>
+        <h5 className="card-title text-center">{title || "Untitled"}</h5>
         <hr />
         <p className="card-text text-center">
-          Some quick example text to build on the card title and make up the
-          bulk of the cards content.
+          {description || "There should be sth here."}
         </p>
       </div>
     </div>
