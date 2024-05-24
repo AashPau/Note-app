@@ -2,6 +2,7 @@ import { apiProcesser } from "./axiosHelper";
 
 const serverEP = import.meta.env.VITE_SERVER_URL;
 const notesEP = serverEP + "/notes";
+const singleNoteEP = notesEP + "/note";
 
 export const postNewNote = async (obj) => {
   const axiosObj = {
@@ -23,7 +24,8 @@ export const fetchNotes = async () => {
 export const fetchSingleNote = async (_id) => {
   const axiosObj = {
     method: "get",
-    url: `${notesEP}/${_id}`,
+    url: singleNoteEP,
+    _id,
   };
   return await apiProcesser(axiosObj);
 };
@@ -31,7 +33,8 @@ export const fetchSingleNote = async (_id) => {
 export const deleteOneNote = async (_id) => {
   const axiosObj = {
     method: "delete",
-    url: `${notesEP}/${_id}`,
+    url: notesEP,
+    _id,
   };
   return await apiProcesser(axiosObj);
 };

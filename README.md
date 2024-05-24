@@ -27,3 +27,9 @@ update - make the "+" button and the fist "note heading" functional
 update - make handleOnSubmit for the form button to post the notes to the server and save it on database
 
 update - avoid submission of empty notes
+
+update- add header for login and signup
+
+update - fix -send id through auth header for deletion and searching
+
+update - pop up toast for note deletion as well

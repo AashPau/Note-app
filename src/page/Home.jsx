@@ -9,13 +9,13 @@ import {
   fetchSingleNote,
 } from "../helper/notesAxios";
 import { Layout } from "../layout/Layout";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [panel, setPanel] = useState("display");
   const [notes, setNotes] = useState([]);
   const [display, setDisplay] = useState({});
 
-  console.log(display);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,10 +38,12 @@ const Home = () => {
     const { data } = await fetchSingleNote(_id);
     data ? setDisplay(data) : console.log("error");
   };
+
   const handleOnDelete = async (_id) => {
     const response = await deleteOneNote(_id);
-    if (response) {
-      console.log("success");
+
+    if (response?.status === "success") {
+      toast[response.status](response.message);
       //remove the deleted note from the notes array
       setNotes(notes.filter((note) => note._id !== _id));
       setDisplay({});
