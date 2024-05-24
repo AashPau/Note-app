@@ -8,6 +8,7 @@ import {
   fetchNotes,
   fetchSingleNote,
 } from "../helper/notesAxios";
+import { Layout } from "../layout/Layout";
 
 const Home = () => {
   const [panel, setPanel] = useState("display");
@@ -54,41 +55,46 @@ const Home = () => {
   };
 
   return (
-    <div className="container rounded mt-5">
-      <div className="row">
-        <div className="col bg-success rounded p-5 noteList">
-          {/* list of notes */}
-          <div className="d-flex">
-            <h1>Notes</h1>
-            <div className="ms-auto">
-              <h1>
-                <i className="fa-solid fa-plus" onClick={handleOnPlusClick}></i>
-              </h1>
+    <Layout>
+      <div className="container rounded">
+        <div className="row">
+          <div className="col bg-success rounded p-5 noteList">
+            {/* list of notes */}
+            <div className="d-flex">
+              <h1>Notes</h1>
+              <div className="ms-auto">
+                <h1>
+                  <i
+                    className="fa-solid fa-plus"
+                    onClick={handleOnPlusClick}
+                  ></i>
+                </h1>
+              </div>
+            </div>
+
+            <hr />
+            <div className="overflow">
+              {notes.map((note, i) => (
+                <NoteHeader
+                  key={i}
+                  title={note.title}
+                  handleOnDelete={() => handleOnDelete(note._id)}
+                  handleOnNotesClick={() => handleOnNotesClick(note._id)}
+                />
+              ))}
             </div>
           </div>
-
-          <hr />
-          <div className="overflow">
-            {notes.map((note, i) => (
-              <NoteHeader
-                key={i}
-                title={note.title}
-                handleOnDelete={() => handleOnDelete(note._id)}
-                handleOnNotesClick={() => handleOnNotesClick(note._id)}
-              />
-            ))}
+          <div className="col bg-info d-flex p-5 rounded justify-content-center">
+            {/* display notes or form */}
+            {panel === "display" ? (
+              <Display display={display} />
+            ) : (
+              <AddContent onAddNote={handleOnAddNote} />
+            )}
           </div>
         </div>
-        <div className="col bg-info d-flex p-5 rounded justify-content-center">
-          {/* display notes or form */}
-          {panel === "display" ? (
-            <Display display={display} />
-          ) : (
-            <AddContent onAddNote={handleOnAddNote} />
-          )}
-        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
