@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { Layout } from "../../layout/Layout";
-import { Row, Col, Form, Button } from "react-bootstrap";
-import { CustomInput } from "../../components/customInpute/CustomInput";
+
+import { CustomInput } from "../../components/customInput/CustomInput";
 
 import { toast } from "react-toastify";
-import { postNewUser } from "../../features/users/userAxios";
+// import { postNewUser } from "../../features/users/userAxios";
 
 const SignUp = () => {
-  const [form, setForm] = useState({});
+  const [form, setform] = useState({});
   const [error, setError] = useState("");
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setForm({
+    setform({
       ...form,
       [name]: value,
     });
@@ -27,10 +27,10 @@ const SignUp = () => {
       return alert("password do not match");
     }
 
-    const responsePending = postNewUser(rest);
-    toast.promise(responsePending, {
-      pending: "Please wait....",
-    });
+    // const responsePending = postNewUser(rest);
+    // toast.promise(responsePending, {
+    //   pending: "Please wait....",
+    // });
 
     const { status, message } = await responsePending;
     toast[status](message);
@@ -83,9 +83,9 @@ const SignUp = () => {
 
   return (
     <Layout>
-      <Row>
-        <Col>
-          <Form
+      <div className="row">
+        <div className="col">
+          <form
             onSubmit={handleOnSubmit}
             className="shadow-lg border p-5 rounded  m-auto mt-4"
             style={{ width: "450px" }}
@@ -103,13 +103,13 @@ const SignUp = () => {
               </div>
             )}
             <div className="d-grid">
-              <Button disabled={error} type="submit">
+              <button disabled={error} type="submit" className="rounded">
                 Submit
-              </Button>
+              </button>
             </div>
-          </Form>
-        </Col>
-      </Row>
+          </form>
+        </div>
+      </div>
     </Layout>
   );
 };
