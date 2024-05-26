@@ -5,10 +5,10 @@ export const Header = () => {
 
       <div className="ms-auto d-flex gap-3">
         <div className="d-flex align-items-center justify-content-center">
-          <p>LogIn</p>
+          <p className="shadow-ld border p-2 rounded">LogIn</p>
         </div>
         <div className="d-flex align-items-center justify-content-center">
-          <p>SignUp</p>
+          <p className="shadow-ld border p-2 rounded">SignUp</p>
         </div>
       </div>
     </div>
