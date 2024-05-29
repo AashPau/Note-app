@@ -12,8 +12,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes>
-
-      {/* <Home /> */}
+      {/* 
+      <Home /> */}
       <ToastContainer />
     </>
   );

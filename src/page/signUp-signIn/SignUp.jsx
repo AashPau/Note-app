@@ -4,11 +4,14 @@ import { Layout } from "../../layout/Layout";
 import { CustomInput } from "../../components/customInput/CustomInput";
 
 import { toast } from "react-toastify";
+import { postNewUser } from "../../features/users/userAxios";
+import { useNavigate } from "react-router-dom";
 // import { postNewUser } from "../../features/users/userAxios";
 
 const SignUp = () => {
   const [form, setform] = useState({});
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -23,30 +26,28 @@ const SignUp = () => {
     e.preventDefault();
 
     const { confirmPassword, ...rest } = form;
+    console.log(rest);
     if (confirmPassword !== rest.password) {
       return alert("password do not match");
     }
 
-    // const responsePending = postNewUser(rest);
-    // toast.promise(responsePending, {
-    //   pending: "Please wait....",
-    // });
+    const responsePending = postNewUser(rest);
+    toast.promise(responsePending, {
+      pending: "Please wait....",
+    });
 
     const { status, message } = await responsePending;
+
     toast[status](message);
+    if (status === "success") {
+      navigate("/signIn");
+    }
   };
 
   const inputs = [
     {
-      label: "First Name",
-      name: "fName",
-      type: "text",
-      required: true,
-      placeholder: "Sam",
-    },
-    {
-      label: "Last Name",
-      name: "lName",
+      label: "Name",
+      name: "name",
       type: "text",
       required: true,
       placeholder: "Rogan",
@@ -90,7 +91,7 @@ const SignUp = () => {
             className="shadow-lg border p-5 rounded  m-auto mt-4"
             style={{ width: "450px" }}
           >
-            <h1>Join the library community!</h1>
+            <h1>Join the community!</h1>
             <hr />
             {inputs.map((input, i) => (
               <CustomInput key={i} {...input} onChange={handleOnChange} />

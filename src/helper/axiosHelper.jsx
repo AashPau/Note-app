@@ -13,6 +13,7 @@ export const apiProcesser = async ({ method, url, data, _id }) => {
     });
     return response.data;
   } catch (error) {
+    console.log(error.message);
     return {
       status: "error",
       message: error.message,

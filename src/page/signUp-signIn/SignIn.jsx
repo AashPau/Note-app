@@ -1,6 +1,7 @@
 import { CustomInput } from "../../components/customInput/CustomInput";
 import { Layout } from "../../layout/Layout";
 import { useRef } from "react";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const emailRef = useRef("");
@@ -11,9 +12,9 @@ const SignIn = () => {
     const email = emailRef.current.value;
     const password = passRef.current.value;
     // console.log(email, password);
-    // if (!email || !password) {
-    //   return toast.error("Both field must be filled");
-    // }
+    if (!email || !password) {
+      return toast.error("Both field must be filled");
+    }
 
     // // const { status, message, tokens } = await loginUser({ email, password });
     // toast[status](message);

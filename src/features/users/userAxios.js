@@ -11,3 +11,12 @@ export const postNewUser = async (obj) => {
   };
   return await apiProcesser(axiosObj);
 };
+
+export const loginUser = async (obj) => {
+  const axiosObj = {
+    method: "post",
+    url: userEP + "/login",
+    data: obj,
+  };
+  return await apiProcesser(axiosObj);
+};
