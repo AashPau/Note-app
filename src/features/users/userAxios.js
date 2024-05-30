@@ -20,3 +20,11 @@ export const loginUser = async (obj) => {
   };
   return await apiProcesser(axiosObj);
 };
+export const fetchUserInfo = () => {
+  const axiosObj = {
+    method: "get",
+    url: userEP,
+    isPrivate: true,
+  };
+  return apiProcesser(axiosObj);
+};

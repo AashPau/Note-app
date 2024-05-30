@@ -1,26 +1,42 @@
+import { useNavigate } from "react-router-dom";
 import { CustomInput } from "../../components/customInput/CustomInput";
+import { loginUser } from "../../features/users/userAxios";
 import { Layout } from "../../layout/Layout";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserObj } from "../../features/users/userAction";
 
 const SignIn = () => {
   const emailRef = useRef("");
   const passRef = useRef("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.userInfo);
+
+  useEffect(() => {
+    user?._id && navigate("/dashboard");
+  }, [user?._id, navigate]);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
-    // console.log(email, password);
+
     if (!email || !password) {
       return toast.error("Both field must be filled");
     }
+    const { status, message, tokens } = await loginUser({ email, password });
+    toast[status](message);
 
-    // // const { status, message, tokens } = await loginUser({ email, password });
-    // toast[status](message);
-    // //store tokens in the sessions
-    // sessionStorage.setItem("accessJWT", tokens.accessJWT);
-    // localStorage.setItem("refreshJWT", tokens.refreshJWT);
+    //store tokens in the sessions
+    sessionStorage.setItem("accessJWT", tokens.accessJWT);
+    localStorage.setItem("refreshJWT", tokens.refreshJWT);
+
+    if (status === "success") {
+      dispatch(getUserObj());
+    }
   };
   const inputs = [
     {

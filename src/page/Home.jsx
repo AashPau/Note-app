@@ -8,13 +8,15 @@ import {
   fetchNotes,
   fetchSingleNote,
 } from "../helper/notesAxios";
-import { Layout } from "../layout/Layout";
+import { UserLayout } from "../layout/UserLayout";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [panel, setPanel] = useState("display");
   const [notes, setNotes] = useState([]);
   const [display, setDisplay] = useState({});
+  const { user } = useSelector((state) => state.userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +59,7 @@ const Home = () => {
   };
 
   return (
-    <Layout>
+    <UserLayout>
       <div className="container rounded">
         <div className="row">
           <div className="col bg-success rounded p-5 noteList">
@@ -96,7 +98,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </UserLayout>
   );
 };
 

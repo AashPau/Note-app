@@ -1,9 +1,30 @@
 import axios from "axios";
+const userEP =
+  import.meta.env.VITE_APP_ROOT_SERVER + "/api/v1/users/renew-accesjwt";
 
-export const apiProcesser = async ({ method, url, data, _id }) => {
+const getAccessJWT = () => {
+  return sessionStorage.getItem("accessJWT");
+};
+const getRefreshJWT = () => {
+  return localStorage.getItem("refreshJWT");
+};
+
+export const apiProcesser = async ({
+  method,
+  url,
+  data,
+  _id,
+  isPrivate,
+  isRefresh,
+}) => {
   const headers = {
-    Authorization: _id ?? null,
+    Authorization: isPrivate
+      ? isRefresh
+        ? getRefreshJWT()
+        : getAccessJWT()
+      : _id || null,
   };
+  console.log({ headers });
   try {
     const response = await axios({
       method,
@@ -13,10 +34,37 @@ export const apiProcesser = async ({ method, url, data, _id }) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
+    const message = error?.response?.data?.message ?? error.message;
+
+    if (message === "jwt expired") {
+      // now user refreshJWT to request new accessJWT
+      const token = await renewAccessJWT();
+      // re call back same api processer
+      if (token) {
+        return apiProcesser({ method, url, data, isPrivate });
+      }
+
+      //clear the tokens
+      localStorage.removeItem("refreshJWT");
+      sessionStorage.removeItem("accessJWT");
+    }
     return {
       status: "error",
-      message: error.message,
+      message,
     };
   }
+};
+
+const renewAccessJWT = async () => {
+  const { accessJWT } = await apiProcesser({
+    method: "get",
+    url: userEP,
+    isPrivate: true,
+    isRefreshJwt: true,
+  });
+
+  sessionStorage.setItem("accessJWT", accessJWT);
+
+  return accessJWT;
 };
