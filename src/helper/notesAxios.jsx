@@ -4,19 +4,21 @@ const serverEP = import.meta.env.VITE_SERVER_URL;
 const notesEP = serverEP + "/notes";
 const singleNoteEP = notesEP + "/note";
 
-export const postNewNote = async (obj) => {
+export const postNewNote = async ({ _id, ...rest }) => {
   const axiosObj = {
     method: "post",
     url: notesEP,
-    data: obj,
+    data: rest,
+    _id,
   };
   return await apiProcesser(axiosObj);
 };
 
-export const fetchNotes = async () => {
+export const fetchNotes = async (_id) => {
   const axiosObj = {
     method: "get",
     url: notesEP,
+    _id,
   };
   return await apiProcesser(axiosObj);
 };

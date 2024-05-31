@@ -2,11 +2,15 @@ import { useRef } from "react";
 import "./AddContent.css";
 import { postNewNote } from "../../helper/notesAxios";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export const AddContent = ({ onAddNote }) => {
   const titleRef = useRef("");
   const descriptionRef = useRef("");
 
+  const { user } = useSelector((state) => state.userInfo);
+  const { _id } = user;
+  console.log({ _id });
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +25,7 @@ export const AddContent = ({ onAddNote }) => {
     const formData = {
       title,
       description,
+      _id,
     };
 
     const response = await postNewNote(formData);

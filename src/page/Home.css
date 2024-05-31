@@ -1,10 +1,6 @@
-.noteHead {
-  background: rgb(140, 140, 228);
+.bgSpecial {
+  background: #e0e2e4;
 }
-.noteHead:focus {
-  background: rgb(240, 240, 163);
-}
-
 .overflow {
   overflow: auto !important;
   height: 300px;

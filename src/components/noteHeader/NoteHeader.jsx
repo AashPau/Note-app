@@ -7,7 +7,7 @@ export const NoteHeader = ({
 }) => {
   return (
     <div
-      className="noteHead border border-dark rounded p-3 d-flex mb-2"
+      className="bgSpecial border border-dark rounded p-3 d-flex mb-2"
       onClick={handleOnNotesClick}
     >
       <h4>{title}</h4>

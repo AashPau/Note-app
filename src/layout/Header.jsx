@@ -9,14 +9,16 @@ export const Header = () => {
 
   const handleOnLogOutClick = () => {
     dispatch(setUser({}));
-    navigate("/");
+    navigate("/signin");
   };
 
   const renderLoggedInLinks = () => (
     <>
       <div className="d-flex align-items-center justify-content-center">
         <Link to="/dashboard" className="nav-link">
-          <p className="shadow-ld border p-2 rounded">Dashboard</p>
+          <p className="shadow-ld border border-2 border-primary p-2 rounded">
+            Dashboard
+          </p>
         </Link>
       </div>
       <div
@@ -24,7 +26,9 @@ export const Header = () => {
         onClick={handleOnLogOutClick}
       >
         <Link to="/logout" className="nav-link">
-          <p className="shadow-ld border p-2 rounded">LogOut</p>
+          <p className="shadow-ld border border-2 border-primary p-2 rounded">
+            LogOut
+          </p>
         </Link>
       </div>
     </>
@@ -34,12 +38,16 @@ export const Header = () => {
     <>
       <div className="d-flex align-items-center justify-content-center">
         <Link to="/signin" className="nav-link">
-          <p className="shadow-ld border p-2 rounded">LogIn</p>
+          <p className="shadow-ld border border-2 border-primary p-2 rounded">
+            LogIn
+          </p>
         </Link>
       </div>
       <div className="d-flex align-items-center justify-content-center">
         <Link to="/" className="nav-link">
-          <p className="shadow-ld border p-2 rounded">SignUp</p>
+          <p className="shadow-ld border border-2 border-primary p-2 rounded">
+            SignUp
+          </p>
         </Link>
       </div>
     </>

@@ -73,7 +73,9 @@ const SignIn = () => {
             ))}
 
             <div className="d-grid">
-              <button type="submit">Submit</button>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
             </div>
           </form>
         </div>

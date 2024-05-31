@@ -17,11 +17,12 @@ const Home = () => {
   const [notes, setNotes] = useState([]);
   const [display, setDisplay] = useState({});
   const { user } = useSelector((state) => state.userInfo);
+  const { _id } = user;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchNotes();
+        const response = await fetchNotes(_id);
         setNotes(response.data);
       } catch (error) {
         console.error("Error fetching notes:", error);
@@ -62,7 +63,7 @@ const Home = () => {
     <UserLayout>
       <div className="container rounded">
         <div className="row">
-          <div className="col bg-success rounded p-5 noteList">
+          <div className="col border border-2 rounded p-5 noteList">
             {/* list of notes */}
             <div className="d-flex">
               <h1>Notes</h1>
@@ -88,7 +89,7 @@ const Home = () => {
               ))}
             </div>
           </div>
-          <div className="col bg-info d-flex p-5 rounded justify-content-center">
+          <div className="col border border-2 d-flex p-4 rounded justify-content-center">
             {/* display notes or form */}
             {panel === "display" ? (
               <Display display={display} />

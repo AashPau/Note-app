@@ -104,7 +104,11 @@ const SignUp = () => {
               </div>
             )}
             <div className="d-grid">
-              <button disabled={error} type="submit" className="rounded">
+              <button
+                disabled={error}
+                type="submit"
+                className="rounded btn btn-primary"
+              >
                 Submit
               </button>
             </div>

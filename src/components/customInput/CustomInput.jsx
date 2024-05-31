@@ -8,7 +8,7 @@ export const CustomInput = ({ label, inputRef, ...rest }) => {
         </div>
         <div className="col">
           {" "}
-          <input {...rest} ref={inputRef} className="rounded" />
+          <input {...rest} ref={inputRef} className="rounded ps-1" />
         </div>
       </div>
     </div>
