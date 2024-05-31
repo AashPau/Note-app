@@ -66,7 +66,7 @@ const SignIn = () => {
             className="shadow-lg border p-5 rounded  m-auto mt-4"
             style={{ width: "450px" }}
           >
-            <h1>Join the library community!</h1>
+            <h1>Log-In to access your notes!</h1>
             <hr />
             {inputs.map((input, i) => (
               <CustomInput key={i} {...input} />
