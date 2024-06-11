@@ -27,7 +27,15 @@ const SignIn = () => {
     if (!email || !password) {
       return toast.error("Both field must be filled");
     }
-    const { status, message, tokens } = await loginUser({ email, password });
+    // const { status, message, tokens } = await loginUser({ email, password });
+    // toast[status](message);
+
+    const pending = loginUser({ email, password });
+    toast.promise(pending, {
+      pending: "Please wait ...",
+    });
+
+    const { status, message, tokens } = await pending;
     toast[status](message);
 
     //store tokens in the sessions
